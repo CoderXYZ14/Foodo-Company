@@ -9,6 +9,9 @@ const Body = () => {
   const [filterResturent, setFilterResturent] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  //this is a fn
+  //const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -21,10 +24,13 @@ const Body = () => {
     console.log(json);
 
     setResData(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    console.log(
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilterResturent(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -83,13 +89,17 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap ">
         {filterResturent.map((restaurant) => (
           <Link
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
+            {/* {restaurant.info.promoted ? (
+              <RestaurantCardPromoted resList={restaurant} />
+            ) : ( */}
             <RestaurantCard resList={restaurant} />
+            {/* )} */}
           </Link>
         ))}
       </div>
